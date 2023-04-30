@@ -1,14 +1,17 @@
 package racingcar.repository;
 
+
+import racingcar.domain.Car;
+import java.util.List;
+
 public interface CarRepository {
+    void saveCars(List<Car> carList);
 
-    /*
-    car 저장
-     */
-    void saveCars();
+    void updatePosition(Car car);
 
-    /*
-    round마다 car position 업데이트되는 부분 반영
-     */
-    void updatePosition();
+    Car findCarByName(String carName);
+
+    List<Car> findWinners();
+
+    List<Car> findAllCars();
 }

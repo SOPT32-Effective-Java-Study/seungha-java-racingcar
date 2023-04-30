@@ -5,7 +5,7 @@ import racingcar.view.message.ErrorMessage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.List;
 
 /*
 사용자의 응답을 입력받음
@@ -13,23 +13,25 @@ import java.util.Arrays;
 public class InputView {
 
     private final OutputView outputView = new OutputView();
-    private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static final String SEPARATOR = ",";
     private static final int CAR_NAME_LENGTH_LIMIT = 5;
 
-    public String[] scanCarNames() throws IOException {
+    public List<String> scanCarNames() throws IOException {
         outputView.printCarNameMessage();
         return separateInput(readInput());
     }
 
-    public int scanAttempts(BufferedReader br) throws IOException {
+    public int scanAttempts() throws IOException {
         outputView.printAttemptsMessage();
         return Integer.parseInt(readInput());
     }
 
-    private String[] separateInput(String inputString) {
-        String[] carNames = inputString.split(SEPARATOR);
-        Arrays.stream(carNames).forEach(carName -> validateCarNameLength(carName.length()));
+    private List<String> separateInput(String inputString) {
+        List<String> carNames = List.of(inputString.split(SEPARATOR));
+        for (int i = 0; i < carNames.size(); i++) {
+            validateCarNameLength(carNames.get(i).length());
+        }
         return carNames;
     }
 
