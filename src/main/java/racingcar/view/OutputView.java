@@ -27,9 +27,8 @@ public class OutputView {
     public void printRaceResultMessage() { println(Message.RACE_RESULT_MESSAGE); }
 
 
-    public void printRound(Map<String, Integer> resultMap) { // carNames나 carPositions 같은 파라미터만 입력받음
-        for (String carName:
-                resultMap.keySet()) {
+    public void printRound(Map<String, Integer> resultMap) {
+        for (String carName: resultMap.keySet()) {
             print(carName + CARNAME_MARK);
             printPosition(resultMap.get(carName));
         }
@@ -53,8 +52,6 @@ public class OutputView {
             }
             print(carNames.get(i));
         }
-
-        // carNames.stream().forEach(carName -> print(carName);
     }
 
     private void println(String message) {
