@@ -19,8 +19,8 @@ public class CarServiceImpl implements CarService{
     @Override
     public void registerCars(List<String> carNames) {
         List<Car> carList = new ArrayList<>();
-        for (int i = 0; i < carNames.size(); i++) {
-            carList.add(new Car(carNames.get(i)));
+        for (String carName: carNames) {
+            carList.add(new Car(carName));
         }
         carRepository.saveCars(carList);
     }
@@ -40,9 +40,9 @@ public class CarServiceImpl implements CarService{
         List<Car> carList = carRepository.findAllCars();
         Map<String, Integer> resultMap = new HashMap<>();
 
-        for (int i = 0; i < carList.size(); i++) {
-            goOrStop(carList.get(i));
-            resultMap.put(carList.get(i).getName(), carList.get(i).getPosition());
+        for (Car car: carList) {
+            goOrStop(car);
+            resultMap.put(car.getName(), car.getPosition());
         }
 
         Map<String, Integer> unmodifiableMap = Collections.unmodifiableMap(resultMap);

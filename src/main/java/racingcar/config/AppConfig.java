@@ -6,6 +6,7 @@ import racingcar.repository.CarRepository;
 import racingcar.repository.CarRepositoryImpl;
 import racingcar.service.CarService;
 import racingcar.service.CarServiceImpl;
+import racingcar.view.InputView;
 
 public class AppConfig {
 

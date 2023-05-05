@@ -10,11 +10,13 @@ import java.util.Map;
 public class CarControllerImpl implements CarController {
 
     private final CarService carService;
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public CarControllerImpl(CarService carService) {
         this.carService = carService;
+        this.inputView = InputView.getInputview();
+        this.outputView = OutputView.getOutputView();
     }
 
     public void startRace() throws IOException {

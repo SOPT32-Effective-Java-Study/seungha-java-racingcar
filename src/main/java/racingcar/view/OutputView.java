@@ -5,15 +5,19 @@ import racingcar.view.message.Message;
 import java.util.List;
 import java.util.Map;
 
-/*
-터미널에 노출될 메시지 출
- */
 public class OutputView {
 
     private static final String POSITION_MARK = "-";
     private static final String CARNAME_MARK = " : ";
     private static final String WINNER_MESSAGE_PREFIX = "최종 우승자 : ";
     private static final String CARNAME_SEPERATOR = ", ";
+    private static final OutputView outputView = new OutputView();
+
+    private OutputView() {}
+
+    public static final OutputView getOutputView() {
+        return outputView;
+    }
 
 
     public void printCarNameMessage() {

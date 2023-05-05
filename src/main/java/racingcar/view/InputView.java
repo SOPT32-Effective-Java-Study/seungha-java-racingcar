@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import racingcar.domain.Car;
 import racingcar.view.message.ErrorMessage;
 
 import java.io.BufferedReader;
@@ -7,12 +8,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-/*
-사용자의 응답을 입력받음
- */
 public class InputView {
 
-    private final OutputView outputView = new OutputView();
+    private InputView() {}
+
+    public static InputView getInputview() {
+        return inputView;
+    }
+
+    private static final InputView inputView = new InputView();
+    private final OutputView outputView = OutputView.getOutputView();
     private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static final String SEPARATOR = ",";
     private static final int CAR_NAME_LENGTH_LIMIT = 5;
@@ -29,8 +34,8 @@ public class InputView {
 
     private List<String> separateInput(String inputString) {
         List<String> carNames = List.of(inputString.split(SEPARATOR));
-        for (int i = 0; i < carNames.size(); i++) {
-            validateCarNameLength(carNames.get(i).length());
+        for (String carName: carNames) {
+            Car.validateCarNameLength(carName.length());
         }
         return carNames;
     }
@@ -44,12 +49,6 @@ public class InputView {
     private void validateEmptyValue(String inputString) {
         if (inputString == "") {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_CAR_NAME);
-        }
-    }
-
-    private void validateCarNameLength(int carNameLength) {
-        if (carNameLength > CAR_NAME_LENGTH_LIMIT) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME_LENGTH);
         }
     }
 }
